@@ -1,14 +1,61 @@
-export class User {
+import * as mongoose from 'mongoose';
 
-    constructor( 
-        public id: string,
-        public firstName: string,
-        public lastName: string,
-        public email: string,
-        public password: string,
-        public role: string,
-        public age: number,
-        public consum: number,
-        public weight: number
-    ) {}
+export const UserSchema = new mongoose.Schema({
+    firstName: {
+        type: String,
+        required: true,
+        min: 2,
+        max: 40,
+    },
+    lastName: {
+        type: String,
+        required: true,
+        min: 2,
+        max: 40,
+    },
+    email: {
+        type: String,
+        required: true,
+    },
+    password: {
+        type: String,
+        required: true,
+        max: 1024,
+        min: 6,
+    },
+    role: {
+        type: String,
+        required: true
+    },
+    age: {
+        type: Number, 
+        required: true,
+        min: 18, 
+        max: 65
+    },
+    consum: {
+        type: Number, 
+        required: true
+    },
+    weight: {
+        type: Number, 
+        required: true
+    },
+    onMission: {
+        type: Boolean,
+        required: true
+    }
+});
+
+export interface User extends mongoose.Document {
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    role: string;
+    age: number;
+    consum: number;
+    weight: number;
+    onMission: boolean;
 }
