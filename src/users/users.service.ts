@@ -41,13 +41,11 @@ export class UsersService {
         return result.id as string;
     }
 
-    async loginUser(email: string): Promise<User | undefined> {
-        return this.userModel.findOne(user => user.email === email);
-       /* const user = await this.userModel.findOne({email: email});
-
-        if(!user || user.password != password) {throw new NotFoundException('Wrong email or password')};
-        return user; */
-    }
+    async loginUser(email: string, pass: string): Promise<User | undefined> {
+        const user = await this.userModel.findOne({email: email});
+        if(!user || user.password != pass) { throw new NotFoundException('Wrong email or password') }
+        return user;
+      }
 
     async getUsers() {
         const users = await this.userModel.find().exec();
