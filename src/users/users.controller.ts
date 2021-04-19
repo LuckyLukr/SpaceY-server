@@ -5,7 +5,7 @@ import {
     Get,
     Param,
     Patch,
-    Delete,
+    Delete
 } from "@nestjs/common";
 
 import { UsersService } from './users.service';
@@ -14,7 +14,7 @@ import { UsersService } from './users.service';
     export class UsersController {
         constructor(private readonly usersService: UsersService) {}
 
-        @Post('/')
+        @Post()
         async addUser(
             @Body('firstName') prodFName: string,
             @Body('lastName') prodLName: string,
@@ -45,17 +45,8 @@ import { UsersService } from './users.service';
 
         @Post('login')
         async loginUser(@Body('email') prodEmail: string, @Body('password') prodPassword: string,) {
-            const user = await this.usersService.loginUser(prodEmail, prodPassword);
-            return {
-                id: user.id,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                email: user.email,
-                role: user.role,
-                age: user.age,
-                weight: user.weight,
-                consum: user.consum
-            };
+            const user = await this.usersService.loginUser(prodEmail,prodPassword);
+            return user;
         }
 
         @Get()
