@@ -11,7 +11,7 @@ import { UsersModule } from './users/users.module';
 @Module({
   imports: [
     UsersModule,
-    MongooseModule.forRoot(process.env.MONGODB_URI),
+    MongooseModule.forRoot(process.env.ATLAS_URI),
     AuthModule
   ],
   controllers: [AppController],
