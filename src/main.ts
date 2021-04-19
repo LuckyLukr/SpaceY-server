@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import 'reflect-metadata';
+require('dotenv').config();
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -16,6 +17,6 @@ async function bootstrap() {
 
 
   app.enableCors();
-  await app.listen(5000);
+  await app.listen(process.env.PORT);
 }
 bootstrap();
