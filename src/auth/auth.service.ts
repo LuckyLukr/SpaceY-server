@@ -1,5 +1,5 @@
 
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 
@@ -15,12 +15,13 @@ export class AuthService {
     if (user && user.password === pass) {
       return user;
     }
-    return null;
+    throw new NotFoundException('Wrong email or password');
   }
 
   async login(user: any) {
-    const payload = { email: user.email, sub: user.id };
+    const payload = { email: user.email, sub: user.id, role: user.role };
     return {
+      user: user,
       access_token: this.jwtService.sign(payload),
     };
   }

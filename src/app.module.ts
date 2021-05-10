@@ -7,10 +7,12 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { AuthService } from './auth/auth.service';
 import { UsersModule } from './users/users.module';
+import { SpacecraftModule } from './spacecrafts/spacecraft.module';
 
 @Module({
   imports: [
     UsersModule,
+    SpacecraftModule,
     MongooseModule.forRoot(process.env.ATLAS_URI),
     AuthModule
   ],

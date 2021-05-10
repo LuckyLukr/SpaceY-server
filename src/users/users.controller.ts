@@ -5,8 +5,10 @@ import {
     Get,
     Param,
     Patch,
-    Delete
+    Delete,
+    UseGuards
 } from "@nestjs/common";
+import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
 
 import { UsersService } from './users.service';
 
@@ -49,6 +51,7 @@ import { UsersService } from './users.service';
             return user;
         }
 
+        @UseGuards(JwtAuthGuard)
         @Get()
         async getAllUsers() {
             const users = await this.usersService.getUsers();
@@ -65,6 +68,7 @@ import { UsersService } from './users.service';
             }));
         }
 
+        @UseGuards(JwtAuthGuard)
         @Get(':id')
         async getUser(@Param('id') prodId: string) {
             const user = await this.usersService.getUser(prodId)
@@ -82,6 +86,7 @@ import { UsersService } from './users.service';
             }
         }
 
+        @UseGuards(JwtAuthGuard)
         @Patch(':id')
         async updateUser(
             @Param('id') prodId: string,
@@ -104,6 +109,7 @@ import { UsersService } from './users.service';
             return null;
         }
 
+        @UseGuards(JwtAuthGuard)
         @Delete(':id')
         async removeUser(@Param('id') prodId: string) {
             await this.usersService.deleteUser(prodId);

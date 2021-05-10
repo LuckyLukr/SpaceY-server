@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 const { registerValidation } = require('../validation');
@@ -26,13 +26,11 @@ export class UsersService {
     ) {
         //Data validation
         const { error } = registerValidation({firstName, lastName, age, email, password, repeatPassword, role,});
-        if(error) throw new NotFoundException(error.details[0].message);
+        if(error) throw new UnauthorizedException(error.details[0].message);
 
         //Checking if the user is already in the DB
         const emailExists = await this.userModel.findOne({email});
-        if(emailExists) {
-            throw new NotFoundException('Email already exists');
-        }
+        if(emailExists) throw new UnauthorizedException('Email already exists');
 
         const hashedPass = sha1(password);
         const newUser = new this.userModel({firstName, lastName, email, password:hashedPass, role, age, consum, weight, onMission,})
@@ -43,7 +41,6 @@ export class UsersService {
 
     async loginUser(email: string, pass: string): Promise<User | undefined> {
         const user = await this.userModel.findOne({email: email});
-        if(!user || user.password != pass) { throw new NotFoundException('Wrong email or password') }
         return user;
       }
 
