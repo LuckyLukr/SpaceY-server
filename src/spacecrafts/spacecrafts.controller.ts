@@ -80,6 +80,24 @@ import { SpacecraftService } from './spacecrafts.service';
             }
         }
 
+        @Patch(':id')
+        async updateSpacecraft(
+            @Param('id') prodId: string,
+            @Body('name') prodName: string,
+            @Body('onMission') prodOnMission: boolean,
+            @Body('destroyed') prodDestroyed: boolean,
+            @Body('tankCondition') prodTankCondition: number
+        ) {
+            await this.spacecraftService.updateSpacecraft(
+                prodId,
+                prodName,
+                prodOnMission,
+                prodDestroyed,
+                prodTankCondition,
+            );
+            return null;
+        }
+
         @Delete(':id')
         async removeSpacecraft(@Param('id') prodId: string) {
             await this.spacecraftService.deleteSpacecraft(prodId);

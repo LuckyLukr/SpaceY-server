@@ -47,6 +47,29 @@ export class SpacecraftService {
         if( result.n === 0 ) { throw new NotFoundException('Error: Deletion did not succeeded.') }
     }
 
+    async updateSpacecraft(
+        spacecraftId: string,
+        name: string,
+        onMission: boolean,
+        destroyed: boolean,
+        tankCondition: number,
+    ) {
+        const updatedSpacecraft = await this.findSpacecraft(spacecraftId);
+        if (name) {
+            updatedSpacecraft.name = name;
+        }
+        if (onMission) {
+            updatedSpacecraft.onMission = onMission;
+        }
+        if (destroyed) {
+            updatedSpacecraft.destroyed = destroyed;
+        }
+        if (tankCondition) {
+            updatedSpacecraft.tankCondition = tankCondition;
+        }
+        updatedSpacecraft.save();
+    }
+
     private async findSpacecraft( id: string): Promise<Spacecraft> {
         let spacecraft;
         try{
