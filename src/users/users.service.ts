@@ -20,6 +20,7 @@ export class UsersService {
         repeatPassword: string,
         role: string,
         age: number,
+        birth: string,
         consum: number,
         weight: number,
         onMission: boolean
@@ -33,7 +34,7 @@ export class UsersService {
         if(emailExists) throw new UnauthorizedException('Email already exists');
 
         const hashedPass = sha1(password);
-        const newUser = new this.userModel({firstName, lastName, email, password:hashedPass, role, age, consum, weight, onMission,})
+        const newUser = new this.userModel({firstName, lastName, email, password:hashedPass, role, age, birth, consum, weight, onMission,})
         const result = await newUser.save();
         
         return result.id as string;
@@ -59,6 +60,7 @@ export class UsersService {
         firstName: string,
         lastName: string,
         age: number,
+        birth: string,
         consum: number,
         weight: number,
         onMission: boolean
@@ -72,6 +74,9 @@ export class UsersService {
         }
         if (age) {
             updatedUser.age = age;
+        }
+        if (birth) {
+            updatedUser.birth = birth;
         }
         if (consum) {
             updatedUser.consum = consum;

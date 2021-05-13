@@ -33,6 +33,10 @@ export const UserSchema = new mongoose.Schema({
         min: 18, 
         max: 65
     },
+    birth: {
+        type: String, 
+        required: true
+    },
     consum: {
         type: Number, 
         required: true
@@ -55,6 +59,7 @@ export interface User extends mongoose.Document {
     password: string;
     role: string;
     age: number;
+    birth: string;
     consum: number;
     weight: number;
     onMission: boolean;

@@ -16,7 +16,6 @@ import { UsersService } from './users.service';
     export class UsersController {
         constructor(private readonly usersService: UsersService) {}
 
-        @UseGuards(JwtAuthGuard)
         @Post()
         async addUser(
             @Body('firstName') prodFName: string,
@@ -26,6 +25,7 @@ import { UsersService } from './users.service';
             @Body('repeatPassword') prodRepeatPassword: string,
             @Body('role') prodRole: string,
             @Body('age') prodAge: number,
+            @Body('birth') prodBirth: string,
             @Body('consum') prodConsum: number,
             @Body('weight') prodWeight: number,
             @Body('onMission') prodOnMission: boolean,
@@ -38,6 +38,7 @@ import { UsersService } from './users.service';
                 prodRepeatPassword,
                 prodRole,
                 prodAge,
+                prodBirth,
                 prodConsum,
                 prodWeight,
                 prodOnMission
@@ -63,6 +64,7 @@ import { UsersService } from './users.service';
                 email: e.email,
                 role: e.role,
                 age: e.age,
+                birth: e.birth,
                 consum: e.consum,
                 weight: e.weight,
                 onMission: e.onMission,
@@ -80,6 +82,7 @@ import { UsersService } from './users.service';
                 email: user.email,
                 role: user.role,
                 age: user.age,
+                birth: user.birth,
                 consum: user.consum,
                 weight: user.weight,
                 onMission: user.onMission,
@@ -94,6 +97,7 @@ import { UsersService } from './users.service';
             @Body('firstName') prodFName: string,
             @Body('lastName') prodLName: string,
             @Body('age') prodAge: number,
+            @Body('birth') prodBirth: string,
             @Body('consum') prodConsum: number,
             @Body('weight') prodWeight: number,
             @Body('onMission') prodOnMission: boolean,
@@ -103,6 +107,7 @@ import { UsersService } from './users.service';
                 prodFName,
                 prodLName,
                 prodAge,
+                prodBirth,
                 prodConsum,
                 prodWeight,
                 prodOnMission
