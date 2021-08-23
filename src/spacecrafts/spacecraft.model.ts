@@ -41,6 +41,10 @@ export const SpacecraftSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    fuelConsumption: {
+        type: Number,
+        required: true
+    },
     fridge: {
         type: Number,
         required: true
@@ -58,5 +62,6 @@ export interface Spacecraft extends mongoose.Document {
     tankCapacity: number;
     tankCondition: number;
     motorImpulse: number;
+    fuelConsumption: number,
     fridge: number;
 }

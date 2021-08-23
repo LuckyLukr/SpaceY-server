@@ -26,6 +26,7 @@ import { SpacecraftService } from './spacecrafts.service';
             @Body('tankCapacity') prodTankCapacity: number,
             @Body('tankCondition') prodTankCondition: number,
             @Body('motorImpulse') prodMotorImpulse: number,
+            @Body('fuelConsumption') prodFuelConsumption: number,
             @Body('fridge') prodFridge: number,
         ) {
             const generatedId = await this.spacecraftService.insertSpacecraft(
@@ -38,6 +39,7 @@ import { SpacecraftService } from './spacecrafts.service';
                 prodTankCapacity,
                 prodTankCondition,
                 prodMotorImpulse,
+                prodFuelConsumption,
                 prodFridge
             );
             
@@ -58,6 +60,7 @@ import { SpacecraftService } from './spacecrafts.service';
                 tankCapacity: e.tankCapacity,
                 tankCondition: e.tankCondition,
                 motorImpulse: e.motorImpulse,
+                fuelConsumption: e.fuelConsumption,
                 fridge: e.fridge
             }));
         }
@@ -76,6 +79,7 @@ import { SpacecraftService } from './spacecrafts.service';
                 tankCapacity: spacecraft.tankCapacity,
                 tankCondition: spacecraft.tankCondition,
                 motorImpulse: spacecraft.motorImpulse,
+                fuelConsumption: spacecraft.fuelConsumption,
                 fridge: spacecraft.fridge,
             }
         }

@@ -20,13 +20,14 @@ export class SpacecraftService {
         tankCapacity: number,
         tankCondition: number,
         motorImpulse: number,
+        fuelConsumption: number,
         fridge: number,
     ) {
         //Checking if the spacecraft is already in the DB
         const nameExists = await this.spacecraftModel.findOne({name});
         if(nameExists) throw new UnauthorizedException('Name already exists');
 
-        const newSpacecraft = new this.spacecraftModel({name, type, weight, onMission, destroyed, seats, tankCapacity, tankCondition, motorImpulse, fridge})
+        const newSpacecraft = new this.spacecraftModel({name, type, weight, onMission, destroyed, seats, tankCapacity, tankCondition, motorImpulse, fuelConsumption, fridge})
         const result = await newSpacecraft.save();
         
         return result.id as string;
