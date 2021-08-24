@@ -17,8 +17,8 @@ export const SpacecraftSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    onMission: {
-        type: Boolean,
+    status: {
+        type: String,
         required: true,
     },
     destroyed: {
@@ -45,6 +45,14 @@ export const SpacecraftSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    startCombustion: {
+        type: Number,
+        required: true
+    },
+    landingCombustion: {
+        type: Number,
+        required: true
+    },
     fridge: {
         type: Number,
         required: true
@@ -56,12 +64,14 @@ export interface Spacecraft extends mongoose.Document {
     name: string;
     type: string;
     weight: number;
-    onMission: boolean;
+    status: string;
     destroyed: boolean;
     seats: number;
     tankCapacity: number;
     tankCondition: number;
     motorImpulse: number;
     fuelConsumption: number,
+    startCombustion: number,
+    landingCombustion: number,
     fridge: number;
 }

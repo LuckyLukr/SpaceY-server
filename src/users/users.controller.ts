@@ -28,7 +28,7 @@ import { UsersService } from './users.service';
             @Body('birth') prodBirth: string,
             @Body('consum') prodConsum: number,
             @Body('weight') prodWeight: number,
-            @Body('onMission') prodOnMission: boolean,
+            @Body('status') prodStatus: string,
         ) {
             const generatedId = await this.usersService.insertUser(
                 prodFName,
@@ -41,7 +41,7 @@ import { UsersService } from './users.service';
                 prodBirth,
                 prodConsum,
                 prodWeight,
-                prodOnMission
+                prodStatus
             );
             
             return { id: generatedId };
@@ -67,7 +67,7 @@ import { UsersService } from './users.service';
                 birth: e.birth,
                 consum: e.consum,
                 weight: e.weight,
-                onMission: e.onMission,
+                status: e.status,
             }));
         }
 
@@ -85,7 +85,7 @@ import { UsersService } from './users.service';
                 birth: user.birth,
                 consum: user.consum,
                 weight: user.weight,
-                onMission: user.onMission,
+                status: user.status,
 
             }
         }
@@ -100,7 +100,7 @@ import { UsersService } from './users.service';
             @Body('birth') prodBirth: string,
             @Body('consum') prodConsum: number,
             @Body('weight') prodWeight: number,
-            @Body('onMission') prodOnMission: boolean,
+            @Body('status') prodStatus: string,
         ) {
             await this.usersService.updateUser(
                 prodId,
@@ -110,7 +110,7 @@ import { UsersService } from './users.service';
                 prodBirth,
                 prodConsum,
                 prodWeight,
-                prodOnMission
+                prodStatus
             );
             return null;
         }

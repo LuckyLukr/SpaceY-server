@@ -43,7 +43,7 @@ export const MissionSchema = new mongoose.Schema({
 });
 
 export interface Mission extends mongoose.Document {
-    id: number,
+    id: string,
     name: string,
     spacecraft: Spacecraft,
     astronauts: User[],

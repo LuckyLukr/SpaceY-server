@@ -14,20 +14,36 @@ export class SpacecraftService {
         name: string,
         type: string,
         weight: number,
-        onMission: boolean,
+        status: string,
         destroyed: boolean,
         seats: number,
         tankCapacity: number,
         tankCondition: number,
         motorImpulse: number,
         fuelConsumption: number,
+        startCombustion: number,
+        landingCombustion: number,
         fridge: number,
     ) {
         //Checking if the spacecraft is already in the DB
         const nameExists = await this.spacecraftModel.findOne({name});
         if(nameExists) throw new UnauthorizedException('Name already exists');
 
-        const newSpacecraft = new this.spacecraftModel({name, type, weight, onMission, destroyed, seats, tankCapacity, tankCondition, motorImpulse, fuelConsumption, fridge})
+        const newSpacecraft = new this.spacecraftModel({
+            name, 
+            type, 
+            weight, 
+            status, 
+            destroyed, 
+            seats, 
+            tankCapacity, 
+            tankCondition, 
+            motorImpulse, 
+            fuelConsumption,
+            startCombustion,
+            landingCombustion,
+            fridge
+        })
         const result = await newSpacecraft.save();
         
         return result.id as string;
@@ -51,7 +67,7 @@ export class SpacecraftService {
     async updateSpacecraft(
         spacecraftId: string,
         name: string,
-        onMission: boolean,
+        status: string,
         destroyed: boolean,
         tankCondition: number,
     ) {
@@ -59,8 +75,8 @@ export class SpacecraftService {
         if (name) {
             updatedSpacecraft.name = name;
         }
-        if (onMission) {
-            updatedSpacecraft.onMission = onMission;
+        if (status) {
+            updatedSpacecraft.status = status;
         }
         if (destroyed) {
             updatedSpacecraft.destroyed = destroyed;

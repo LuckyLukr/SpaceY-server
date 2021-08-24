@@ -45,8 +45,8 @@ export const UserSchema = new mongoose.Schema({
         type: Number, 
         required: true
     },
-    onMission: {
-        type: Boolean,
+    status: {
+        type: String,
         required: true
     }
 });
@@ -62,5 +62,5 @@ export interface User extends mongoose.Document {
     birth: string;
     consum: number;
     weight: number;
-    onMission: boolean;
+    status: String;
 }

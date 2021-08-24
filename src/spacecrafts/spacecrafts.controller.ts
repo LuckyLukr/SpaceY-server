@@ -20,26 +20,30 @@ import { SpacecraftService } from './spacecrafts.service';
             @Body('name') prodName: string,
             @Body('type') prodType: string,
             @Body('weight') prodWeight: number,
-            @Body('onMission') prodOnMission: boolean,
+            @Body('status') prodStatus: string,
             @Body('destroyed') prodDestroyed: boolean,
             @Body('seats') prodSeats: number,
             @Body('tankCapacity') prodTankCapacity: number,
             @Body('tankCondition') prodTankCondition: number,
             @Body('motorImpulse') prodMotorImpulse: number,
             @Body('fuelConsumption') prodFuelConsumption: number,
+            @Body('startCombustion') prodStartCombustion: number,
+            @Body('landingCombustion') prodLandingCombustion: number,
             @Body('fridge') prodFridge: number,
         ) {
             const generatedId = await this.spacecraftService.insertSpacecraft(
                 prodName,
                 prodType,
                 prodWeight,
-                prodOnMission,
+                prodStatus,
                 prodDestroyed,
                 prodSeats,
                 prodTankCapacity,
                 prodTankCondition,
                 prodMotorImpulse,
                 prodFuelConsumption,
+                prodStartCombustion,
+                prodLandingCombustion,
                 prodFridge
             );
             
@@ -54,13 +58,15 @@ import { SpacecraftService } from './spacecrafts.service';
                 name: e.name,
                 type: e.type,
                 weight: e.weight,
-                onMission: e.onMission,
+                status: e.status,
                 destroyed: e.destroyed,
                 seats: e.seats,
                 tankCapacity: e.tankCapacity,
                 tankCondition: e.tankCondition,
                 motorImpulse: e.motorImpulse,
                 fuelConsumption: e.fuelConsumption,
+                startCombustion: e.startCombustion,
+                landingCombustion: e.landingCombustion,
                 fridge: e.fridge
             }));
         }
@@ -73,13 +79,15 @@ import { SpacecraftService } from './spacecrafts.service';
                 name: spacecraft.name,
                 type: spacecraft.type,
                 weight: spacecraft.weight,
-                onMission: spacecraft.onMission,
+                status: spacecraft.status,
                 destroyed: spacecraft.destroyed,
                 seats: spacecraft.seats,
                 tankCapacity: spacecraft.tankCapacity,
                 tankCondition: spacecraft.tankCondition,
                 motorImpulse: spacecraft.motorImpulse,
                 fuelConsumption: spacecraft.fuelConsumption,
+                startCombustion: spacecraft.startCombustion,
+                landingCombustion: spacecraft.landingCombustion,
                 fridge: spacecraft.fridge,
             }
         }
@@ -88,14 +96,14 @@ import { SpacecraftService } from './spacecrafts.service';
         async updateSpacecraft(
             @Param('id') prodId: string,
             @Body('name') prodName: string,
-            @Body('onMission') prodOnMission: boolean,
+            @Body('status') prodStatus: string,
             @Body('destroyed') prodDestroyed: boolean,
             @Body('tankCondition') prodTankCondition: number
         ) {
             await this.spacecraftService.updateSpacecraft(
                 prodId,
                 prodName,
-                prodOnMission,
+                prodStatus,
                 prodDestroyed,
                 prodTankCondition,
             );

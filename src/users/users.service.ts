@@ -23,7 +23,7 @@ export class UsersService {
         birth: string,
         consum: number,
         weight: number,
-        onMission: boolean
+        status: string
     ) {
         //Data validation
         const { error } = registerValidation({firstName, lastName, age, email, password, repeatPassword, role,});
@@ -34,7 +34,7 @@ export class UsersService {
         if(emailExists) throw new UnauthorizedException('Email already exists');
 
         const hashedPass = sha1(password);
-        const newUser = new this.userModel({firstName, lastName, email, password:hashedPass, role, age, birth, consum, weight, onMission,})
+        const newUser = new this.userModel({firstName, lastName, email, password:hashedPass, role, age, birth, consum, weight, status})
         const result = await newUser.save();
         
         return result.id as string;
@@ -63,7 +63,7 @@ export class UsersService {
         birth: string,
         consum: number,
         weight: number,
-        onMission: boolean
+        status: string
     ) {
         const updatedUser = await this.findUser(userId);
         if (firstName) {
@@ -84,8 +84,8 @@ export class UsersService {
         if (weight) {
             updatedUser.weight = weight;
         }
-        if (onMission) {
-            updatedUser.onMission = onMission;
+        if (status) {
+            updatedUser.status = status;
         }
         updatedUser.save();
     }
