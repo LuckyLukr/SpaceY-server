@@ -17,8 +17,8 @@ export class MissionService {
         spacecraft: Spacecraft,
         astronauts: User[],
         status: string,
-        blastOff: string,
-        landing: string,
+        blastOff: Date,
+        landing: number,
         destination: string,
         distance: number,
         time: string
@@ -74,7 +74,7 @@ export class MissionService {
     }
 
     private async findMission( id: string): Promise<Mission> {
-        let mission;
+        let mission:Mission;
         try{
             mission = await this.missionModel.findById(id);
         } catch(error) {

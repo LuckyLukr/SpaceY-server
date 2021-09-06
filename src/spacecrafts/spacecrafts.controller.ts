@@ -21,7 +21,6 @@ import { SpacecraftService } from './spacecrafts.service';
             @Body('type') prodType: string,
             @Body('weight') prodWeight: number,
             @Body('status') prodStatus: string,
-            @Body('destroyed') prodDestroyed: boolean,
             @Body('seats') prodSeats: number,
             @Body('tankCapacity') prodTankCapacity: number,
             @Body('tankCondition') prodTankCondition: number,
@@ -36,7 +35,6 @@ import { SpacecraftService } from './spacecrafts.service';
                 prodType,
                 prodWeight,
                 prodStatus,
-                prodDestroyed,
                 prodSeats,
                 prodTankCapacity,
                 prodTankCondition,
@@ -59,7 +57,6 @@ import { SpacecraftService } from './spacecrafts.service';
                 type: e.type,
                 weight: e.weight,
                 status: e.status,
-                destroyed: e.destroyed,
                 seats: e.seats,
                 tankCapacity: e.tankCapacity,
                 tankCondition: e.tankCondition,
@@ -80,7 +77,6 @@ import { SpacecraftService } from './spacecrafts.service';
                 type: spacecraft.type,
                 weight: spacecraft.weight,
                 status: spacecraft.status,
-                destroyed: spacecraft.destroyed,
                 seats: spacecraft.seats,
                 tankCapacity: spacecraft.tankCapacity,
                 tankCondition: spacecraft.tankCondition,
@@ -97,14 +93,12 @@ import { SpacecraftService } from './spacecrafts.service';
             @Param('id') prodId: string,
             @Body('name') prodName: string,
             @Body('status') prodStatus: string,
-            @Body('destroyed') prodDestroyed: boolean,
             @Body('tankCondition') prodTankCondition: number
         ) {
             await this.spacecraftService.updateSpacecraft(
                 prodId,
                 prodName,
                 prodStatus,
-                prodDestroyed,
                 prodTankCondition,
             );
             return null;

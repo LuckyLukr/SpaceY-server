@@ -23,8 +23,8 @@ import { MissionService } from "./mission.service";
             @Body('spacecraft') prodSpacecraft: Spacecraft,
             @Body('astronauts') prodAstronauts: User[],
             @Body('status') prodStatus: string,
-            @Body('blastOff') prodBlastOff: string,
-            @Body('landing') prodLanding: string,
+            @Body('blastOff') prodBlastOff: Date,
+            @Body('landing') prodLanding: number,
             @Body('destination') prodDestination: string,
             @Body('distance') prodDistance: number,
             @Body('time') prodTime: string,
@@ -48,6 +48,7 @@ import { MissionService } from "./mission.service";
         async getAllMissions() {
             const spacecrafts = await this.missionService.getMissions();
             return spacecrafts.map( e => ({
+                id: e.id,
                 name: e.name,
                 spacecraft: e.spacecraft,
                 astronauts: e.astronauts,

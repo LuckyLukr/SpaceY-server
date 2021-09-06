@@ -21,10 +21,6 @@ export const SpacecraftSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    destroyed: {
-        type: Boolean,
-        required: true,
-    },
     seats: {
         type: Number, 
         required: true
@@ -65,7 +61,6 @@ export interface Spacecraft extends mongoose.Document {
     type: string;
     weight: number;
     status: string;
-    destroyed: boolean;
     seats: number;
     tankCapacity: number;
     tankCondition: number;

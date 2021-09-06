@@ -15,7 +15,6 @@ export class SpacecraftService {
         type: string,
         weight: number,
         status: string,
-        destroyed: boolean,
         seats: number,
         tankCapacity: number,
         tankCondition: number,
@@ -34,7 +33,6 @@ export class SpacecraftService {
             type, 
             weight, 
             status, 
-            destroyed, 
             seats, 
             tankCapacity, 
             tankCondition, 
@@ -68,7 +66,6 @@ export class SpacecraftService {
         spacecraftId: string,
         name: string,
         status: string,
-        destroyed: boolean,
         tankCondition: number,
     ) {
         const updatedSpacecraft = await this.findSpacecraft(spacecraftId);
@@ -77,9 +74,6 @@ export class SpacecraftService {
         }
         if (status) {
             updatedSpacecraft.status = status;
-        }
-        if (destroyed) {
-            updatedSpacecraft.destroyed = destroyed;
         }
         if (tankCondition) {
             updatedSpacecraft.tankCondition = tankCondition;

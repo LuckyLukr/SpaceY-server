@@ -22,11 +22,11 @@ export const MissionSchema = new mongoose.Schema({
         required: true
     },
     blastOff: {
-        type: String,
+        type: Date,
         required: true
     },
     landing: {
-        type: String
+        type: Number
     },
     destination: {
         type: String,
@@ -48,8 +48,8 @@ export interface Mission extends mongoose.Document {
     spacecraft: Spacecraft,
     astronauts: User[],
     status: string,
-    blastOff: string,
-    landing: string,
+    blastOff: Date,
+    landing: number,
     destination: string,
     distance: number,
     time: string
