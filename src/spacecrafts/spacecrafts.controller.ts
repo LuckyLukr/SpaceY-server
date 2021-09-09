@@ -8,6 +8,7 @@ import {
     Delete,
     UseGuards
 } from "@nestjs/common";
+import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
 
 import { SpacecraftService } from './spacecrafts.service';
 
@@ -15,6 +16,7 @@ import { SpacecraftService } from './spacecrafts.service';
     export class SpacecraftController {
         constructor (private readonly spacecraftService: SpacecraftService) {}
 
+        @UseGuards(JwtAuthGuard)
         @Post()
         async insertSpacecraft(
             @Body('name') prodName: string,
@@ -48,6 +50,7 @@ import { SpacecraftService } from './spacecrafts.service';
             return { id: generatedId };
         }
 
+        @UseGuards(JwtAuthGuard)
         @Get()
         async getAllSpacecrafts() {
             const spacecrafts = await this.spacecraftService.getSpacecrafts();
@@ -68,6 +71,7 @@ import { SpacecraftService } from './spacecrafts.service';
             }));
         }
 
+        @UseGuards(JwtAuthGuard)
         @Get(':id')
         async getSpacecraft(@Param('id') prodId: string) {
             const spacecraft = await this.spacecraftService.getSpacecraft(prodId)
@@ -88,6 +92,7 @@ import { SpacecraftService } from './spacecrafts.service';
             }
         }
 
+        @UseGuards(JwtAuthGuard)
         @Patch(':id')
         async updateSpacecraft(
             @Param('id') prodId: string,
@@ -104,6 +109,7 @@ import { SpacecraftService } from './spacecrafts.service';
             return null;
         }
 
+        @UseGuards(JwtAuthGuard)
         @Delete(':id')
         async removeSpacecraft(@Param('id') prodId: string) {
             await this.spacecraftService.deleteSpacecraft(prodId);
